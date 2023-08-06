@@ -1,0 +1,7 @@
+NSG Priority
+======================
+Resources
+| where type =~ "microsoft.network/networksecuritygroups"
+| project nsgRules = parse_json(parse_json(properties).securityRules), NSG = name, subscriptionId, resourceGroup
+| mvexpand nsgRule = nsgRules
+| where nsgRule.properties.direction == "Inbound" and nsgRule.properties.priority == 410
