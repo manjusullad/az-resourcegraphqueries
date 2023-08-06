@@ -1,0 +1,7 @@
+Fetch Load Balancer details with Inbound NAT Rule
+==================================================
+Resources
+| where type == "microsoft.network/loadbalancers" 
+| project id,name,location,resourceGroup,subscriptionId, properties.inboundNatRules
+| where properties_inboundNatRules =! "[]"
+| where properties['inboundNatRules'] != 
